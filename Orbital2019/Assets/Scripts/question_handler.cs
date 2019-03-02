@@ -21,7 +21,7 @@ public class Question_template
 public class question_handler : MonoBehaviour
 {
 
-    enum State { Game, Intro, Intro2, BoxIntro, Lose};
+    enum State { Game, Intro, Intro2, BoxIntro, Lose, Reload};
     
     State game_state;
 
@@ -109,6 +109,12 @@ public class question_handler : MonoBehaviour
         Debug.Log("you have lost :(");
         timer = TIME_LOSE;
         game_state = State.Lose;
+        for(int i=0;i<question_list.Count;++i)
+        {
+            Destroy(question_list[i].gameObject);
+        }
+        question_list = new List<Question>(){ };
+        Canvas.ForceUpdateCanvases();
     }
 
     // Update is called once per frame
@@ -150,18 +156,43 @@ public class question_handler : MonoBehaviour
         }
 
         //LOSE
-        if (game_state == State.Lose)
+        else if (game_state == State.Lose)
         {
             //[100, 95] lame fall
             if(timer >= 95 && timer<= 100)
                 lame.Fall((timer-95)/(float)5);
+            
+            if (timer == 0 && question_list.Count == 0)
+            {
+                Question q = Instantiate<Question>(question_prefab, new Vector3(0, 0, 0), Quaternion.identity);
+                q.transform.SetParent(questions_pointer.transform, false);
+                q.Initialiaze("Voulez-vous rejouer ?", "Oui", "Non", 1, KeyCode.LeftArrow, KeyCode.RightArrow);
+                question_list.Add(q);
+            }
 
-            if (timer == 0)
-                game_state = State.Game;
+            if (question_list.Count == 1)
+            {
+                Question q = question_list[0];
+                if (q.getAnswer() != 0)
+                {
+                    if (q.getAnswer() == 1)
+                    {
+                        game_state = State.Reload;
+                        timer = 400;
+                    }
+                    else if (q.getAnswer() == -1)
+                    {
+                        timer = 50;
+                    }
+                    Destroy(q.gameObject);
+                    question_list.RemoveAt(0);
+                    Canvas.ForceUpdateCanvases();
+                }
+            }
         }
 
         //INTRO1
-        if (game_state == State.Intro)
+        else if (game_state == State.Intro)
         {
             float sy = Screen.height/100f;
             int a = 0;
@@ -193,7 +224,7 @@ public class question_handler : MonoBehaviour
             }
         }
         //BOXINTRO
-        if(game_state == State.BoxIntro)
+        else if(game_state == State.BoxIntro)
         {
             if(timer == 0 && question_list.Count==0)
             {
@@ -219,13 +250,13 @@ public class question_handler : MonoBehaviour
                     }
                     Destroy(q.gameObject);
                     question_list.RemoveAt(0);
-                    //Canvas.ForceUpdateCanvases();
+                    Canvas.ForceUpdateCanvases();
                 }
             }
         }
 
         //INTRO2
-        if (game_state == State.Intro2)
+        else if (game_state == State.Intro2)
         {
             //[200-]
             float sy = Screen.height / 100f;
@@ -241,6 +272,41 @@ public class question_handler : MonoBehaviour
                 background.transform.position = new Vector3(0, background_h, 0);
                 float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
                 foreground.transform.position = new Vector3(0, foreground_h, 0);
+            }
+
+            if (timer == 0)
+            {
+                game_state = State.Game;
+            }
+        }
+
+        //RELOAD
+        else if (game_state == State.Reload)
+        {
+            float sy = Screen.height / 100f;
+            int a = 400;
+            int b = 200;
+
+            float lambda = (timer-b) / (float)(a - b);
+            if (lambda < 0)
+                lambda *= -1;
+            lambda = 1 - lambda;
+
+            float intro_h = (1 - lambda) * (2 * sy) + lambda * (0);
+            intro_object.transform.position = new Vector3(0, intro_h, 0);
+            float background_h = (1 - lambda) * 0 + lambda * (-sy);
+            background.transform.position = new Vector3(0, background_h, 0);
+            float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
+            foreground.transform.position = new Vector3(0, foreground_h, 0);
+
+            if (timer == b)
+            {
+                //reset all
+                lame.Init();
+            }
+            else if (timer == 0)
+            {
+                game_state = State.Game;
             }
         }
 
@@ -267,10 +333,10 @@ public class question_handler : MonoBehaviour
         }
 
         //choose random question
-        int index_question = Random.Range(0, all_possible_questions.Count - 1);
+        int index_question = Random.Range(0, all_possible_questions.Count);
         Question_template qt = all_possible_questions[index_question];
         //choose random key combinations
-        int index_codepair = Random.Range(0, keyCodePairs.GetLength(0) - 1);
+        int index_codepair = Random.Range(0, keyCodePairs.GetLength(0));
         KeyCode k1 = keyCodePairs[index_codepair,0];
         KeyCode k2 = keyCodePairs[index_codepair, 1];
 

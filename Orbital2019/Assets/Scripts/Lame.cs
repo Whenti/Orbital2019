@@ -6,9 +6,12 @@ public class Lame : MonoBehaviour
 {
     
     private float hauteur;
+    private float hauteur_shown;
+
     private float hauteur_min;
     private float hauteur_max;
     private float hauteur_lose;
+    private float hauteur_delta;
 
     [SerializeField]
     question_handler qh;
@@ -24,32 +27,43 @@ public class Lame : MonoBehaviour
     void Start()
     {
         //set limits
-        hauteur_min = -1.228f;
-        hauteur_max = -1.56f;
+        hauteur_min = -1.45f;
+        hauteur_max = 1.0f;
         hauteur_lose = -2.039f;
+        hauteur_delta = 0.05f;
 
         //set beginning height
-        hauteur = hauteur_min;
+        Init();
 
+    }
+
+    public void Init()
+    {
+        hauteur = hauteur_min;
+        hauteur_shown = hauteur_min;
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition = new Vector3(0, hauteur, 0);
-
+        gameObject.transform.localPosition = new Vector3(0, hauteur_shown, 0);
     }
 
     public void UpdateHeight()
     {
         hauteur += time_effect;
         if (hauteur <= hauteur_min)
-        {
             hauteur = hauteur_min;
-        }
-        if (hauteur >= hauteur_max)
-        {
+        else if (hauteur >= hauteur_max)
             hauteur = hauteur_max;
+
+        if (Mathf.Abs(hauteur_shown - hauteur) < hauteur_delta)
+            hauteur_shown = hauteur;
+        else
+            hauteur_shown += Mathf.Sign(hauteur - hauteur_shown) * hauteur_delta;
+
+        if(hauteur_shown>=hauteur_max)
+        {
             qh.Lose();
         }
     }
@@ -67,6 +81,6 @@ public class Lame : MonoBehaviour
     public void Fall(float lambda)
     {
         if(lambda >= 0)
-            hauteur = (1 - lambda) * hauteur_lose + lambda * hauteur_max;
+            hauteur_shown = (1 - lambda) * hauteur_lose + lambda * hauteur_max;
     }
 }
