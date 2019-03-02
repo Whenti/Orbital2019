@@ -21,7 +21,7 @@ public class Question_template
 public class question_handler : MonoBehaviour
 {
 
-    enum State { Game, Intro, Lose };
+    enum State { Game, Intro, Intro2, BoxIntro, Lose};
     
     State game_state;
 
@@ -33,6 +33,13 @@ public class question_handler : MonoBehaviour
     GameObject background;
     [SerializeField]
     GameObject foreground;
+    [SerializeField]
+    GameObject title;
+    [SerializeField]
+    GameObject names;
+    [SerializeField]
+    GameObject intro_object;
+
 
     [SerializeField]
     Lame lame;
@@ -50,7 +57,6 @@ public class question_handler : MonoBehaviour
     [SerializeField]
     int TIME_QUESTIONS;
     int TIME_LOSE;
-    int TIME_INTRO;
     [SerializeField]
     int timer;
 
@@ -60,7 +66,6 @@ public class question_handler : MonoBehaviour
         //init times
         TIME_QUESTIONS = 200;
         TIME_LOSE = 100;
-        TIME_INTRO = 200;
 
         timer = TIME_QUESTIONS;
         question_list = new List<Question>() { };
@@ -81,13 +86,6 @@ public class question_handler : MonoBehaviour
             { KeyCode.A, KeyCode.B }};
 
         Intro();
-    }
-
-    public void Intro()
-    {
-        //init game state
-        game_state = State.Intro;
-        timer = TIME_INTRO;
     }
 
     public void Lose()
@@ -146,20 +144,103 @@ public class question_handler : MonoBehaviour
                 game_state = State.Game;
         }
 
-        //INTRO
+        //INTRO1
         if (game_state == State.Intro)
         {
             float sy = Screen.height/100f;
+            int a = 0;
+            int b = 0;
 
-            //[200]
-            float lambda = timer / 200f;
-            float background_h = (1 - lambda) * 0 + lambda * (-sy);
-            background.transform.position = new Vector3(background.transform.position.x, background_h, background.transform.position.z);
-            float foreground_h = (1 - lambda) * 0 + lambda * 2*(-sy);
-            foreground.transform.position = new Vector3(foreground.transform.position.x, foreground_h, foreground.transform.position.z);
+            //FONDU
+            a = 300;
+            b = 200;
+            if (timer <= a && timer >= b)
+            {
+                float lambda_fondu = (timer - b) / (float)(a-b);
+                title.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1 - lambda_fondu);
+            }
+            //SIGNATURES
+            //from -7 to -3.5
+            a = 200;
+            b = 100;
+            if (timer <= a && timer>=b)
+            {
+                float lambda_names = (timer - b) / (float)(a-b);
+                float y_names = lambda_names * (-7) + (1 - lambda_names) * (-3.5f);
+                names.transform.localPosition = new Vector3(0, y_names, 0);
+            }
+
+            if(timer == 0)
+            {
+                game_state = State.BoxIntro;
+                timer = 50;
+            }
+        }
+        //BOXINTRO
+        if(game_state == State.BoxIntro)
+        {
+            if(timer == 0 && question_list.Count==0)
+            {
+                Question q = Instantiate<Question>(question_prefab, new Vector3(0, -60, 0), Quaternion.identity);
+                q.transform.SetParent(questions_pointer.transform, false);
+                q.Initialiaze("Voulez-vous jouer ?", "Oui", "Non", 1, KeyCode.LeftArrow, KeyCode.RightArrow);
+                question_list.Add(q);
+            }
+
+            if(question_list.Count==1)
+            {
+                Question q = question_list[0];
+                if (q.getAnswer() != 0)
+                {
+                    if (q.getAnswer() == 1)
+                    {
+                        game_state = State.Intro2;
+                        timer = 200;
+                    }
+                    else if (q.getAnswer() == -1)
+                    {
+                        timer = 50;
+                    }
+                    Destroy(q.gameObject);
+                    question_list.RemoveAt(0);
+                    //Canvas.ForceUpdateCanvases();
+                }
+            }
         }
 
+        //INTRO2
+        if (game_state == State.Intro2)
+        {
+            //[200-]
+            float sy = Screen.height / 100f;
+            int a = 200;
+            int b = 0;
+            float lambda = timer / (float)(a - b);
 
+            if (timer <= a && timer >= b)
+            {
+                float intro_h = (1 - lambda) * (2 * sy) + lambda * (0);
+                intro_object.transform.position = new Vector3(0, intro_h, 0);
+                float background_h = (1 - lambda) * 0 + lambda * (-sy);
+                background.transform.position = new Vector3(0, background_h, 0);
+                float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
+                foreground.transform.position = new Vector3(0, foreground_h, 0);
+            }
+        }
+
+    }
+
+    public void Intro()
+    {
+        float sy = Screen.height / 100f;
+        float background_h = (-sy);
+        background.transform.position = new Vector3(0, background_h, 0);
+        float foreground_h =  2 * (-sy);
+        foreground.transform.position = new Vector3(0, foreground_h, 0);
+
+        //init game state
+        game_state = State.Intro;
+        timer = 300;
     }
 
     void NewQuestion()
