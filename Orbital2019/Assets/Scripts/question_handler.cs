@@ -85,7 +85,22 @@ public class question_handler : MonoBehaviour
             new Question_template("Ô grand sage, puis-je vous poser une question indélicate ?", "Oui", "Non", 2),
             new Question_template("En quel position se trouve le pénultième coureur du course ?", "Avant dernier", "Second", 1),
             new Question_template("L'humain va-t-il un jour s'affranchir du travail ou restera-t-il à jamais esclave de sa condition ?", "Aucunement", "Moui", 2),
-            new Question_template("Mon cousin Ernie est souffrant, quelle est la cause de son mal ?", "Tumeur", "Hernie", 1)
+            new Question_template("Mon cousin Ernie est souffrant, quelle est la cause de son mal ?", "Tumeur", "Hernie", 1),
+			new Question_template("Quel n'est pas le contraire du mot \"non\"  ?", "Non", "Oui", 1),
+			new Question_template("J'ai tort ou j'ai tord ?", "Tord","Tort", 2),
+			new Question_template("? srevne 'l à eril suov-zevaS", "iuO", "noN",1),
+			new Question_template("Pain au chocolat ou chocolatine ?", "Charlotte aux fraises", "Baba au rhum", 2),
+			new Question_template("Je souffre de diplopie !", "Ddee qquuooii??", "De quoi",1),
+			new Question_template("Un coca ?", "Mouais, bof", "Allez, chaud !", 2),
+			new Question_template("Un hôtel ? ", "Trivago", "Oui, merci !", 1),
+			new Question_template("Comment appelle-t-on un éléphant mort ?", "Décédéléphant", "Eléphantôme", 2),
+			new Question_template("Qui est le père du cousin de la belle-mère de la coiffeuse de mon frère ?", "Henry IV", "Jeanne d'Arc",1),
+			new Question_template("... .- .-.. ..- -     -.-. .-     ...- .-     ··--··", "--- ..- .. ", "-. --- -.", 2),
+			new Question_template("C'est quoi le plus ?", "10.000.000", "10.000 lions",1),
+			new Question_template("Vite ! Réponds au bol !", "AAAAAAH", "Au bol", 2),
+			new Question_template("l","o","l",1),
+			new Question_template("Est-ce une question piège ?", "euh...", "hmm...", 2)
+			
 			/*
             new Question_template("répondez faux !", "vrai", "faux", 2),
             new Question_template("répondez vrai !", "vrai", "faux", 1),
