@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Audio_Manager.cs" />
     <Compile Include="Assets\Scripts\Bourreau.cs" />
     <Compile Include="Assets\Scripts\Lame.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
