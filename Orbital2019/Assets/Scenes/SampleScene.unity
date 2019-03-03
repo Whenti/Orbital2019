@@ -1685,7 +1685,7 @@ MonoBehaviour:
   title: {fileID: 1990197719}
   names: {fileID: 2127688752}
   intro_object: {fileID: 863072824}
-  bourreau: {fileID: 0}
+  bourreau: {fileID: 1550210451}
   lame: {fileID: 749344870}
   tete_galilee: {fileID: 1578598258}
   canvas: {fileID: 1429202432}
