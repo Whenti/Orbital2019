@@ -196,32 +196,10 @@ public class question_handler : MonoBehaviour
             if (timer == 95)
                 tete_galilee.tej();
             
-            if (timer == 0 && question_list.Count == 0)
+            if (timer == 0)
             {
-                Question q = Instantiate<Question>(question_prefab, new Vector3(0, 0, 0), Quaternion.identity);
-                q.transform.SetParent(questions_pointer.transform, false);
-                q.Initialiaze("Voulez-vous rejouer ?", "Oui", "Non", 1, KeyCode.LeftArrow, KeyCode.RightArrow);
-                question_list.Add(q);
-            }
-
-            if (question_list.Count == 1)
-            {
-                Question q = question_list[0];
-                if (q.getAnswer() != 0)
-                {
-                    if (q.getAnswer() == 1)
-                    {
-                        game_state = State.Reload;
-                        timer = 400;
-                    }
-                    else if (q.getAnswer() == -1)
-                    {
-                        timer = 50;
-                    }
-                    Destroy(q.gameObject);
-                    question_list.RemoveAt(0);
-                    Canvas.ForceUpdateCanvases();
-                }
+                game_state = State.Reload;
+                timer = 200;
             }
         }
 
@@ -320,12 +298,10 @@ public class question_handler : MonoBehaviour
         else if (game_state == State.Reload)
         {
             float sy = Screen.height / 100f;
-            int a = 400;
-            int b = 200;
+            int a = 200;
+            int b = 0;
 
             float lambda = (timer-b) / (float)(a - b);
-            if (lambda < 0)
-                lambda *= -1;
             lambda = 1 - lambda;
 
             float intro_h = (1 - lambda) * (2 * sy) + lambda * (0);
@@ -335,15 +311,15 @@ public class question_handler : MonoBehaviour
             float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
             foreground.transform.position = new Vector3(0, foreground_h, 0);
 
-            if (timer == b)
+            if (timer == 0)
             {
                 //reset all
                 lame.Init();
                 bourreau.setActive(false);
-            }
-            else if (timer == 0)
-            {
-                game_state = State.Game;
+                game_state = State.BoxIntro;
+
+                tete_galilee.Reinitialize();
+                audio_manager.musique_clavecin.Play();
             }
         }
 
