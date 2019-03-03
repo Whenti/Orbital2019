@@ -23,6 +23,8 @@ public class Lame : MonoBehaviour
     [SerializeField]
     float right_effect;
 
+    float z_initiale;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class Lame : MonoBehaviour
         hauteur_max = 1.0f;
         hauteur_lose = -2.38f;
         hauteur_delta = 0.02f;
+
+        z_initiale = transform.localPosition.z;
 
         //set beginning height
         Init();
@@ -46,7 +50,7 @@ public class Lame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition = new Vector3(0, hauteur_shown, 0);
+        gameObject.transform.localPosition = new Vector3(0, hauteur_shown, z_initiale);
     }
 
     public void UpdateHeight(int nb_questions)
