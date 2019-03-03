@@ -62,9 +62,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Audio_Manager.cs" />
     <Compile Include="Assets\Scripts\bourreau.cs" />
+    <Compile Include="Assets\Scripts\Citoyen.cs" />
     <Compile Include="Assets\Scripts\Lame.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\Scripts\question_handler.cs" />
+    <Compile Include="Assets\Scripts\TeteGalilee.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Fonts\classical\Readme Classical.txt" />
