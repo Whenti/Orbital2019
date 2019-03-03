@@ -30,7 +30,7 @@ public class Lame : MonoBehaviour
         hauteur_min = -1.45f;
         hauteur_max = 1.0f;
         hauteur_lose = -2.38f;
-        hauteur_delta = 0.05f;
+        hauteur_delta = 0.02f;
 
         //set beginning height
         Init();
@@ -49,9 +49,10 @@ public class Lame : MonoBehaviour
         gameObject.transform.localPosition = new Vector3(0, hauteur_shown, 0);
     }
 
-    public void UpdateHeight()
+    public void UpdateHeight(int nb_questions)
     {
-        hauteur += time_effect;
+        
+        hauteur += time_effect*(nb_questions+1);
         if (hauteur <= hauteur_min)
             hauteur = hauteur_min;
         else if (hauteur >= hauteur_max)

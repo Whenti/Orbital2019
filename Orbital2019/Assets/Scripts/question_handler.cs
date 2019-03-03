@@ -67,6 +67,8 @@ public class question_handler : MonoBehaviour
     [SerializeField]
     Audio_Manager audio_manager;
 
+    Question question_down = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +83,8 @@ public class question_handler : MonoBehaviour
         timer = 0;
 
         audio_manager.musique_clavecin.Play();
+
+        question_down = null;
 
         //question database
         all_possible_questions = new List<Question_template>()
@@ -200,7 +204,7 @@ public class question_handler : MonoBehaviour
                 }
             }
 
-            lame.UpdateHeight();
+            lame.UpdateHeight(question_list.Count);
         }
         
 
@@ -341,7 +345,10 @@ public class question_handler : MonoBehaviour
                 bourreau.setActive(false);
                 game_state = State.BoxIntro;
 
+                question_down = null;
+
                 tete_galilee.Reinitialize();
+                TIME_QUESTIONS = 400;
                 audio_manager.boo.Stop();
             }
         }
@@ -354,6 +361,8 @@ public class question_handler : MonoBehaviour
         int good_answer = q.getAnswer();
 
         bool answer = false;
+
+
         if (Input.GetKeyUp(KeyCode.LeftArrow))
             answer = (1 == good_answer);
 
@@ -384,9 +393,11 @@ public class question_handler : MonoBehaviour
         
 
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            question_down = q;
             q.eclaircirGauche();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            question_down = q;
             q.eclaircirDroite();
         }
         
@@ -445,7 +456,8 @@ public class question_handler : MonoBehaviour
         audio_manager.bouip.Play();
 
         TIME_QUESTIONS = (int)(TIME_QUESTIONS*0.9f);
-        TIME_QUESTIONS = Mathf.Max(TIME_QUESTIONS, 50);
+        TIME_QUESTIONS = Mathf.Max(TIME_QUESTIONS, 100);
+        
 
         Debug.Log("new question !");
     }
