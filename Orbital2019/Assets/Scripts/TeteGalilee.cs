@@ -16,6 +16,9 @@ public class TeteGalilee : MonoBehaviour
     bool est_tej;
     Vector3 vitesse;
 
+    [SerializeField] Sang sangPrefab;
+    [SerializeField] GameObject foreground;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,12 @@ public class TeteGalilee : MonoBehaviour
         if (est_tej) {
             vitesse += new Vector3(0, -0.01f, 0);
             transform.position += vitesse;
+
+            for (int i = 0; i < 5; ++i) {
+                Sang s = Instantiate<Sang>(sangPrefab);
+                s.transform.SetParent(foreground.transform, false);
+                s.transform.position = this.transform.position;
+            }
         }
     }
 
