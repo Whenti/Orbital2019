@@ -408,7 +408,8 @@ public class question_handler : MonoBehaviour
 
         audio_manager.bouip.Play();
 
-        //TIME_QUESTIONS = (int)(TIME_QUESTIONS*0.8f);
+        TIME_QUESTIONS = (int)(TIME_QUESTIONS*0.9f);
+        TIME_QUESTIONS = Mathf.Max(TIME_QUESTIONS, 50);
 
         Debug.Log("new question !");
     }
