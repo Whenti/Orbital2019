@@ -14,7 +14,6 @@ public class Question : MonoBehaviour
     Text a1;
     [SerializeField]
     Text a2;
-    
     //represent the right answer to the question : 1 means 1st answser is correct, 2 means 2nd answser is correct
     int good_answer = 0;
     //variable assessing weither or not the user was right : -1 he is wrong, 0 no answer yet, 1 he is right
@@ -31,7 +30,6 @@ public class Question : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Initialiaze(string text_, string a1_, string a2_, int good_answer_)

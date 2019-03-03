@@ -11,6 +11,7 @@ public class Audio_Manager : MonoBehaviour
     [SerializeField] public AudioSource success;
     [SerializeField] public AudioSource failure;
     [SerializeField] public AudioSource coupe;
+    [SerializeField] public AudioSource bouip;
 
     //gestion fondu clavecin
     float timer_fondu;

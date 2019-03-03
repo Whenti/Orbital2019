@@ -568,6 +568,8 @@ MonoBehaviour:
   a2: {fileID: 4400150312332292205}
   k1_text: {fileID: 5163750784483319343}
   k2_text: {fileID: 5163750783400687819}
+  flecheGauche: {fileID: 1824815869449841179}
+  flecheDroite: {fileID: 9038138142212070141}
 --- !u!1 &5163750784483319505
 GameObject:
   m_ObjectHideFlags: 0
