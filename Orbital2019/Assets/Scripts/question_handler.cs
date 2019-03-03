@@ -45,6 +45,9 @@ public class question_handler : MonoBehaviour
     Lame lame;
 
     [SerializeField]
+    TeteGalilee tete_galilee;
+
+    [SerializeField]
     public Canvas canvas;
 
     List<Question> question_list;
@@ -178,12 +181,19 @@ public class question_handler : MonoBehaviour
             lame.UpdateHeight();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+            tete_galilee.tej();
+
         //LOSE
         else if (game_state == State.Lose)
         {
             //[100, 95] lame fall
             if(timer >= 95 && timer<= 100)
                 lame.Fall((timer-95)/(float)5);
+
+
+            if (timer == 95)
+                tete_galilee.tej();
             
             if (timer == 0 && question_list.Count == 0)
             {
