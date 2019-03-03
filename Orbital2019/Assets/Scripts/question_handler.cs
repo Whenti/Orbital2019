@@ -60,6 +60,9 @@ public class question_handler : MonoBehaviour
     [SerializeField]
     int timer;
 
+    [SerializeField]
+    Audio_Manager audio_manager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +75,8 @@ public class question_handler : MonoBehaviour
 
         //init timer
         timer = 0;
+
+        audio_manager.musique_clavecin.Play();
 
         //question database
         all_possible_questions = new List<Question_template>()
@@ -124,6 +129,9 @@ public class question_handler : MonoBehaviour
         Debug.Log("you have lost :(");
         timer = TIME_LOSE;
         game_state = State.Lose;
+
+        audio_manager.musique_stressante.Stop();
+
         for(int i=0;i<question_list.Count;++i)
         {
             Destroy(question_list[i].gameObject);
@@ -256,6 +264,7 @@ public class question_handler : MonoBehaviour
                 {
                     if (q.getAnswer() == 1)
                     {
+                        audio_manager.fondreClavecin();
                         game_state = State.Intro2;
                         timer = 200;
                     }
@@ -292,6 +301,7 @@ public class question_handler : MonoBehaviour
             if (timer == 0)
             {
                 game_state = State.Game;
+                audio_manager.musique_stressante.Play();
             }
         }
 

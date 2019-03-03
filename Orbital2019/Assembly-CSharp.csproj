@@ -60,11 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Audio_Manager.cs" />
-=======
     <Compile Include="Assets\Scripts\bourreau.cs" />
->>>>>>> fd29074736e01b8d60682a66810e05a16d047df6
     <Compile Include="Assets\Scripts\Lame.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\Scripts\question_handler.cs" />

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Audio_Manager : MonoBehaviour
 {
-    [SerializeField] AudioSource musique_clavecin;
-    [SerializeField] AudioSource musique_stressante;
+    [SerializeField] public AudioSource musique_clavecin;
+    [SerializeField] public AudioSource musique_stressante;
 
     //gestion fondu clavecin
     float timer_fondu;
-    float duree_fondu = 1.0f;//seconde
+    float duree_fondu = 3.0f;//seconde
 
 
     // Start is called before the first frame update
