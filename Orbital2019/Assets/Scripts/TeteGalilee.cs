@@ -22,7 +22,7 @@ public class TeteGalilee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pos_initiale = transform.position;
+        pos_initiale = transform.localPosition;
 
         timer_idle = Random.value * 10;
 
@@ -53,7 +53,7 @@ public class TeteGalilee : MonoBehaviour
 
     public void Reinitialize() {
         est_tej = false;
-        transform.position = pos_initiale;
+        transform.localPosition = pos_initiale;
         
     }
 

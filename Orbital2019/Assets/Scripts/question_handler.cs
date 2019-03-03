@@ -25,7 +25,8 @@ public class question_handler : MonoBehaviour
     enum State { Game, Intro, Intro2, BoxIntro, Lose, Reload};
     
     State game_state;
-
+    [SerializeField]
+    GameObject nuage;
     [SerializeField]
     public Question question_prefab;
     [SerializeField]
@@ -300,8 +301,10 @@ public class question_handler : MonoBehaviour
                 intro_object.transform.position = new Vector3(0, intro_h, 0);
                 float background_h = (1 - lambda) * 0 + lambda * (-2*sy);
                 background.transform.position = new Vector3(0, background_h, 0);
-                float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-2*sy);
+                float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-2 * sy);
                 foreground.transform.position = new Vector3(0, foreground_h, 0);
+                float nuage_h = (1 - lambda) * 0 + lambda * 0.8f * (-2 * sy);
+                nuage.transform.position = new Vector3(0, nuage_h, 0);
             }
 
             if (timer == 0)
@@ -328,7 +331,10 @@ public class question_handler : MonoBehaviour
             float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-2*sy);
             foreground.transform.position = new Vector3(0, foreground_h, 0);
 
-            if(timer==150)
+            float nuage_h = (1 - lambda) * 0 + lambda * 0.8f * (-2 * sy);
+            nuage.transform.position = new Vector3(0, nuage_h, 0);
+
+            if (timer==150)
             {
                 audio_manager.musique_clavecin.Play();
             }
@@ -405,6 +411,9 @@ public class question_handler : MonoBehaviour
         background.transform.position = new Vector3(0, background_h, 0);
         float foreground_h =  2 * (-2*sy);
         foreground.transform.position = new Vector3(0, foreground_h, 0);
+
+        float nuage_h = 0.8f * (-2 * sy);
+        nuage.transform.position = new Vector3(0, nuage_h, 0);
 
         //init game state
         game_state = State.Intro;
