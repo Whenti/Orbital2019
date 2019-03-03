@@ -250,7 +250,7 @@ public class question_handler : MonoBehaviour
             if (timer <= a && timer>=b)
             {
                 float lambda_names = (timer - b) / (float)(a-b);
-                float y_names = lambda_names * (-7) + (1 - lambda_names) * (-3.5f);
+                float y_names = lambda_names * (-7) + (1 - lambda_names) * (-2.5f);
                 names.transform.localPosition = new Vector3(0, y_names, 0);
             }
 
@@ -309,9 +309,9 @@ public class question_handler : MonoBehaviour
             {
                 float intro_h = (1 - lambda) * (2 * sy) + lambda * (0);
                 intro_object.transform.position = new Vector3(0, intro_h, 0);
-                float background_h = (1 - lambda) * 0 + lambda * (-sy);
+                float background_h = (1 - lambda) * 0 + lambda * (-2*sy);
                 background.transform.position = new Vector3(0, background_h, 0);
-                float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
+                float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-2*sy);
                 foreground.transform.position = new Vector3(0, foreground_h, 0);
             }
 
@@ -336,7 +336,7 @@ public class question_handler : MonoBehaviour
             intro_object.transform.position = new Vector3(0, intro_h, 0);
             float background_h = (1 - lambda) * 0 + lambda * (-sy);
             background.transform.position = new Vector3(0, background_h, 0);
-            float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
+            float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-2*sy);
             foreground.transform.position = new Vector3(0, foreground_h, 0);
 
             if(timer==150)
@@ -361,7 +361,7 @@ public class question_handler : MonoBehaviour
     public void Intro()
     {
         float sy = Screen.height / 100f;
-        float background_h = (-sy);
+        float background_h = (-2*sy);
         background.transform.position = new Vector3(0, background_h, 0);
         float foreground_h =  2 * (-sy);
         foreground.transform.position = new Vector3(0, foreground_h, 0);
