@@ -144,6 +144,8 @@ public class question_handler : MonoBehaviour
         }
         question_list = new List<Question>(){ };
         Canvas.ForceUpdateCanvases();
+
+        audio_manager.boo.Play();
     }
 
     // Update is called once per frame
@@ -192,10 +194,9 @@ public class question_handler : MonoBehaviour
             if(timer >= 95 && timer<= 100)
                 lame.Fall((timer-95)/(float)5);
 
-
             if (timer == 95)
                 tete_galilee.tej();
-            
+
             if (timer == 0)
             {
                 game_state = State.Reload;
@@ -311,6 +312,11 @@ public class question_handler : MonoBehaviour
             float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-sy);
             foreground.transform.position = new Vector3(0, foreground_h, 0);
 
+            if(timer==150)
+            {
+                audio_manager.musique_clavecin.Play();
+            }
+
             if (timer == 0)
             {
                 //reset all
@@ -319,7 +325,7 @@ public class question_handler : MonoBehaviour
                 game_state = State.BoxIntro;
 
                 tete_galilee.Reinitialize();
-                audio_manager.musique_clavecin.Play();
+                audio_manager.boo.Stop();
             }
         }
 
