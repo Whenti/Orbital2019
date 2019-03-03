@@ -72,7 +72,7 @@ public class question_handler : MonoBehaviour
     void Start()
     {
         //init times
-        TIME_QUESTIONS = 200;
+        TIME_QUESTIONS = 400;// 200;
         TIME_LOSE = 100;
 
         timer = TIME_QUESTIONS;
@@ -123,8 +123,7 @@ public class question_handler : MonoBehaviour
             new Question_template("répondez sisi la famille !", "lasagna", "sisi", 2)*/
         };
 
-        keyCodePairs = new KeyCode[,] { { KeyCode.LeftArrow, KeyCode.RightArrow },
-            { KeyCode.A, KeyCode.B }};
+        keyCodePairs = new KeyCode[,] { { KeyCode.LeftArrow, KeyCode.RightArrow }};
 
         Intro();
     }
@@ -354,11 +353,15 @@ public class question_handler : MonoBehaviour
         KeyCode k2 = keyCodePairs[index_codepair, 1];
 
         //choose random position
-        float nm = 2 * 1.7075f;
+        float nm = 2;// * 1.7075f;
         float x_ = question_prefab.GetComponent<RectTransform>().sizeDelta.x/nm;
         float y_ = question_prefab.GetComponent<RectTransform>().sizeDelta.y/nm;
-        float x = Random.Range(-Screen.width / nm +x_, Screen.width/nm - x_);
-        float y = Random.Range(-Screen.height/ nm + y_, Screen.height/nm - y_);
+
+        float bx = 800;
+        float by = 400;
+
+        float x = Random.Range(-bx*0.7f / nm +x_, bx/nm - x_);
+        float y = Random.Range(-by/ nm + y_, by/nm - y_);
 
         //instantiate question
         Question q = Instantiate<Question>(question_prefab, new Vector3(x, y, 0), Quaternion.identity);
