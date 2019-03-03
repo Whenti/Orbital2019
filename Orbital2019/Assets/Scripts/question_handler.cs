@@ -183,9 +183,7 @@ public class question_handler : MonoBehaviour
 
             lame.UpdateHeight();
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            tete_galilee.tej();
+        
 
         //LOSE
         else if (game_state == State.Lose)
