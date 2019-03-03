@@ -1141,7 +1141,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6b7f6e7c98391b140babbdbbbfc3aa16, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e4d65fd9f8198de41a22aba353074323, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 974532511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aec1eea15de37b340a94475ec69cc9cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 232ab387d012f84448b641c873b578a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   musique_clavecin: {fileID: 1379920297}
@@ -1672,6 +1672,7 @@ MonoBehaviour:
   title: {fileID: 1990197719}
   names: {fileID: 2127688752}
   intro_object: {fileID: 863072824}
+  bourreau: {fileID: 1550210451}
   lame: {fileID: 749344870}
   tete_galilee: {fileID: 1578598258}
   canvas: {fileID: 1429202432}
@@ -1781,7 +1782,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da18d763b7f27d243b8a95b2e16f22a6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 96e91f41c17a65e449eb09c7ba3fa6e7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2880,7 +2881,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1255614426417400849

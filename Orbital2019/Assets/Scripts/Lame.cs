@@ -29,7 +29,7 @@ public class Lame : MonoBehaviour
         //set limits
         hauteur_min = -1.45f;
         hauteur_max = 1.0f;
-        hauteur_lose = -2.039f;
+        hauteur_lose = -2.38f;
         hauteur_delta = 0.05f;
 
         //set beginning height
