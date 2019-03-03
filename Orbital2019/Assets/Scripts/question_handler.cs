@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Question_template
 {
@@ -55,8 +56,6 @@ public class question_handler : MonoBehaviour
     List<Question> question_list;
 
     List<Question_template> all_possible_questions;
-
-    KeyCode[,] keyCodePairs;
 
     //TIMES
     [SerializeField]
@@ -143,8 +142,6 @@ public class question_handler : MonoBehaviour
             new Question_template("répondez sisi la famille !", "lasagna", "sisi", 2)*/
         };
 
-        keyCodePairs = new KeyCode[,] { { KeyCode.LeftArrow, KeyCode.RightArrow }};
-
         Intro();
     }
 
@@ -183,25 +180,20 @@ public class question_handler : MonoBehaviour
                 NewQuestion();
             }
 
-            for (int i = 0; i < question_list.Count; i += 1)
+            if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) && question_list.Count>=1)
             {
-                Question q = question_list[i];
-                if (q.getAnswer() != 0) {
-                    //if answer is good
-                    if (q.getAnswer() == 1) {
-                        lame.Right();
-                        audio_manager.success.Play();
-                    }
-                    //if answer is bad
-                    else if (q.getAnswer() == -1){
-                        lame.Wrong();
-                        audio_manager.failure.Play();
-                    }
-
-                    Destroy(q.gameObject);
-                    question_list.RemoveAt(i);
-                    --i;
-                    Canvas.ForceUpdateCanvases();
+                bool answer = handleAnswer();
+                //if answer is right
+                if (answer)
+                {
+                    lame.Right();
+                    audio_manager.success.Play();
+                }
+                //if answer is wrong
+                else
+                {
+                    lame.Wrong();
+                    audio_manager.failure.Play();
                 }
             }
 
@@ -268,30 +260,24 @@ public class question_handler : MonoBehaviour
                 audio_manager.bouip.Play();
                 Question q = Instantiate<Question>(question_prefab, new Vector3(0, -60, 0), Quaternion.identity);
                 q.transform.SetParent(questions_pointer.transform, false);
-                q.Initialiaze("Voulez-vous jouer ?", "Oui", "Non", 1, KeyCode.LeftArrow, KeyCode.RightArrow);
+                q.Initialiaze("Voulez-vous jouer ?", "Oui", "Non", 1);
                 question_list.Add(q);
             }
 
-            if(question_list.Count==1)
+            if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) && question_list.Count >= 1)
             {
-                Question q = question_list[0];
-                if (q.getAnswer() != 0)
+                bool answer = handleAnswer();
+                if(answer)
                 {
-                    if (q.getAnswer() == 1)
-                    {
-                        audio_manager.fondreClavecin();
-                        audio_manager.success.Play();
-                        game_state = State.Intro2;
-                        timer = 200;
-                    }
-                    else if (q.getAnswer() == -1)
-                    {
-                        timer = 50;
-                        audio_manager.failure.Play();
-                    }
-                    Destroy(q.gameObject);
-                    question_list.RemoveAt(0);
-                    Canvas.ForceUpdateCanvases();
+                    audio_manager.fondreClavecin();
+                    audio_manager.success.Play();
+                    game_state = State.Intro2;
+                    timer = 200;
+                }
+                else
+                {
+                    timer = 50;
+                    audio_manager.failure.Play();
                 }
             }
         }
@@ -358,6 +344,31 @@ public class question_handler : MonoBehaviour
 
     }
 
+    bool handleAnswer()
+    {
+        Question q = question_list[question_list.Count - 1];
+        int good_answer = q.getAnswer();
+
+        bool answer = false;
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+            answer = (1 == good_answer);
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+            answer = (2 == good_answer);
+
+        Destroy(q.gameObject);
+        question_list.RemoveAt(question_list.Count - 1);
+
+        if (question_list.Count >= 1)
+        {
+            Question q2 = question_list[question_list.Count - 1];
+            q2.GetComponent<Image>().color = new Color(1, 1, 1);
+        }
+
+        Canvas.ForceUpdateCanvases();
+
+        return answer;
+    }
+
     public void Intro()
     {
         float sy = Screen.height / 100f;
@@ -381,10 +392,6 @@ public class question_handler : MonoBehaviour
         //choose random question
         int index_question = Random.Range(0, all_possible_questions.Count);
         Question_template qt = all_possible_questions[index_question];
-        //choose random key combinations
-        int index_codepair = Random.Range(0, keyCodePairs.GetLength(0));
-        KeyCode k1 = keyCodePairs[index_codepair,0];
-        KeyCode k2 = keyCodePairs[index_codepair, 1];
 
         //choose random position
         float nm = 2;// * 1.7075f;
@@ -401,7 +408,13 @@ public class question_handler : MonoBehaviour
         Question q = Instantiate<Question>(question_prefab, new Vector3(x, y, 0), Quaternion.identity);
         q.transform.SetParent(questions_pointer.transform, false);
         //initialize question
-        q.Initialiaze(qt.text, qt.answer1, qt.answer2, qt.right, k1, k2);
+        q.Initialiaze(qt.text, qt.answer1, qt.answer2, qt.right);
+
+        if(question_list.Count>=1)
+        {
+            Question q2 = question_list[question_list.Count - 1];
+            q2.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
+        }
 
         //add to existing questions
         question_list.Add(q);
