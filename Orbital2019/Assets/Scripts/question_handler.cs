@@ -265,6 +265,7 @@ public class question_handler : MonoBehaviour
         {
             if(timer == 0 && question_list.Count==0)
             {
+                audio_manager.bouip.Play();
                 Question q = Instantiate<Question>(question_prefab, new Vector3(0, -60, 0), Quaternion.identity);
                 q.transform.SetParent(questions_pointer.transform, false);
                 q.Initialiaze("Voulez-vous jouer ?", "Oui", "Non", 1, KeyCode.LeftArrow, KeyCode.RightArrow);
@@ -404,6 +405,10 @@ public class question_handler : MonoBehaviour
 
         //add to existing questions
         question_list.Add(q);
+
+        audio_manager.bouip.Play();
+
+        //TIME_QUESTIONS = (int)(TIME_QUESTIONS*0.8f);
 
         Debug.Log("new question !");
     }

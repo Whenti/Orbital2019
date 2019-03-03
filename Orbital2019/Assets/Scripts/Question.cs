@@ -24,6 +24,9 @@ public class Question : MonoBehaviour
     //the different keycodes
     KeyCode k1 = KeyCode.None;
     KeyCode k2 = KeyCode.None;
+
+    [SerializeField] Image flecheGauche;
+    [SerializeField] Image flecheDroite;
     //represent the right answer to the question : 1 means 1st answser is correct, 2 means 2nd answser is correct
     int good_answer = 0;
     //variable assessing weither or not the user was right : -1 he is wrong, 0 no answer yet, 1 he is right
@@ -47,11 +50,13 @@ public class Question : MonoBehaviour
             {
                 Debug.Log("oui");
                 answer = (1 == good_answer) ? 1 : -1;
+                flecheGauche.color = Color.white;
             }
             else if(Input.GetKeyUp(k2))
             {
                 Debug.Log("non");
                 answer = (2 == good_answer) ? 1 : -1;
+                flecheDroite.color = Color.white;
             }
         }
     }
