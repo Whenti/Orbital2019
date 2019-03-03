@@ -1380,6 +1380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 974532513}
   - component: {fileID: 974532512}
+  - component: {fileID: 974532514}
   m_Layer: 0
   m_Name: Audio_Manager
   m_TagString: Untagged
@@ -1399,8 +1400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232ab387d012f84448b641c873b578a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musique_clavecin: {fileID: 1379920297}
-  musique_stressante: {fileID: 902612130}
 --- !u!4 &974532513
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1416,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974532514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974532511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec1eea15de37b340a94475ec69cc9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musique_clavecin: {fileID: 1379920297}
+  musique_stressante: {fileID: 902612130}
 --- !u!1001 &1069102839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1672,13 +1685,13 @@ MonoBehaviour:
   title: {fileID: 1990197719}
   names: {fileID: 2127688752}
   intro_object: {fileID: 863072824}
-  bourreau: {fileID: 1550210451}
+  bourreau: {fileID: 0}
   lame: {fileID: 749344870}
   tete_galilee: {fileID: 1578598258}
   canvas: {fileID: 1429202432}
   TIME_QUESTIONS: 0
   timer: 0
-  audio_manager: {fileID: 974532512}
+  audio_manager: {fileID: 974532514}
 --- !u!212 &1361203241
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2093,9 +2106,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1550210448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07ae3743b1dbda14bba7e7c5376b6f2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cd85f74fdec70945827c04578c96354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1: {fileID: 21300000, guid: a22f49bdd1bc007499608666a6087da8, type: 3}
+  sprite2: {fileID: 21300000, guid: da4515c70de330141aa4579a80e41007, type: 3}
+  sprite_clac: {fileID: 21300000, guid: 788b019bd50975249b4e9bf1e085f7da, type: 3}
 --- !u!1 &1578598255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,7 +2181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 09ef997e0ec2c48408ff459c3d5622b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc033ede33cbefd4eb229847b5d404d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2189,8 +2205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 09ef997e0ec2c48408ff459c3d5622b0, type: 3}
-  - {fileID: 21300000, guid: b3f1a130be7d6ec408334b2be013dcc0, type: 3}
+  - {fileID: 21300000, guid: fc033ede33cbefd4eb229847b5d404d7, type: 3}
+  - {fileID: 21300000, guid: 594bf45b0cda704479ed6f8aa4192319, type: 3}
 --- !u!4 &1626415539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1255614426147479539, guid: 54d43e29b25221f418414d7507b886dd,
@@ -2788,7 +2804,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c7fcb01a2305b0d4191116b7427d43e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b2886a406c51a047af4e6019e69c7b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
