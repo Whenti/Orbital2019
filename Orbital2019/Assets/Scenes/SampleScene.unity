@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qh: {fileID: 1361203240}
-  time_effect: 0.001
+  time_effect: 0.03
   wrong_effect: 0.5
   right_effect: -1
 --- !u!212 &749344871
@@ -2180,7 +2180,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 10000
   m_Sprite: {fileID: 21300000, guid: fc033ede33cbefd4eb229847b5d404d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2207,6 +2207,9 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: fc033ede33cbefd4eb229847b5d404d7, type: 3}
   - {fileID: 21300000, guid: 594bf45b0cda704479ed6f8aa4192319, type: 3}
+  sangPrefab: {fileID: 3153632099902406007, guid: ad8d1792db06be749acda6ed66300a24,
+    type: 3}
+  foreground: {fileID: 1383900285}
 --- !u!4 &1626415539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1255614426147479539, guid: 54d43e29b25221f418414d7507b886dd,
