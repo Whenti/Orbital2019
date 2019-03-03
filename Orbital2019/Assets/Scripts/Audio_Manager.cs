@@ -6,7 +6,11 @@ public class Audio_Manager : MonoBehaviour
 {
     [SerializeField] public AudioSource musique_clavecin;
     [SerializeField] public AudioSource musique_stressante;
+    
     [SerializeField] public AudioSource boo;
+    [SerializeField] public AudioSource success;
+    [SerializeField] public AudioSource failure;
+    [SerializeField] public AudioSource coupe;
 
     //gestion fondu clavecin
     float timer_fondu;

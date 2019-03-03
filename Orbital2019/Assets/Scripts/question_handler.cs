@@ -166,14 +166,17 @@ public class question_handler : MonoBehaviour
             for (int i = 0; i < question_list.Count; i += 1)
             {
                 Question q = question_list[i];
-                if (q.getAnswer() != 0)
-                {
+                if (q.getAnswer() != 0) {
                     //if answer is good
-                    if (q.getAnswer() == 1)
+                    if (q.getAnswer() == 1) {
                         lame.Right();
+                        audio_manager.success.Play();
+                    }
                     //if answer is bad
-                    else if (q.getAnswer() == -1)
+                    else if (q.getAnswer() == -1){
                         lame.Wrong();
+                        audio_manager.failure.Play();
+                    }
 
                     Destroy(q.gameObject);
                     question_list.RemoveAt(i);
@@ -193,8 +196,10 @@ public class question_handler : MonoBehaviour
             if(timer >= 95 && timer<= 100)
                 lame.Fall((timer-95)/(float)5);
 
-            if (timer == 95)
+            if (timer == 95) {
                 tete_galilee.tej();
+                audio_manager.coupe.Play();
+            }
 
             if (timer == 0)
             {
@@ -254,12 +259,14 @@ public class question_handler : MonoBehaviour
                     if (q.getAnswer() == 1)
                     {
                         audio_manager.fondreClavecin();
+                        audio_manager.success.Play();
                         game_state = State.Intro2;
                         timer = 200;
                     }
                     else if (q.getAnswer() == -1)
                     {
                         timer = 50;
+                        audio_manager.failure.Play();
                     }
                     Destroy(q.gameObject);
                     question_list.RemoveAt(0);
@@ -366,7 +373,7 @@ public class question_handler : MonoBehaviour
         float bx = 800;
         float by = 400;
 
-        float x = Random.Range(-bx*0.7f / nm +x_, bx/nm - x_);
+        float x = Random.Range(-bx*0.5f / nm +x_, bx/nm - x_);
         float y = Random.Range(-by/ nm + y_, by/nm - y_);
 
         //instantiate question
