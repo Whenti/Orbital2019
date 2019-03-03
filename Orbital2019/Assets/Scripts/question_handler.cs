@@ -171,6 +171,8 @@ public class question_handler : MonoBehaviour
         if(timer<=0)
             timer = 0;
 
+        handleArrows();
+
         //GAME
         if (game_state == State.Game)
         {
@@ -179,6 +181,7 @@ public class question_handler : MonoBehaviour
                 timer = TIME_QUESTIONS;
                 NewQuestion();
             }
+
 
             if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) && question_list.Count>=1)
             {
@@ -210,6 +213,7 @@ public class question_handler : MonoBehaviour
 
             if (timer == 95) {
                 tete_galilee.tej();
+                audio_manager.death.Play();
                 audio_manager.coupe.Play();
             }
 
@@ -242,7 +246,7 @@ public class question_handler : MonoBehaviour
             if (timer <= a && timer>=b)
             {
                 float lambda_names = (timer - b) / (float)(a-b);
-                float y_names = lambda_names * (-7) + (1 - lambda_names) * (-2.5f);
+                float y_names = lambda_names * (-7) + (1 - lambda_names) * (-3.5f);
                 names.transform.localPosition = new Vector3(0, y_names, 0);
             }
 
@@ -293,7 +297,7 @@ public class question_handler : MonoBehaviour
 
             if (timer <= a && timer >= b)
             {
-                float intro_h = (1 - lambda) * (2 * sy) + lambda * (0);
+                float intro_h = (1 - lambda) * (3 * sy) + lambda * (0);
                 intro_object.transform.position = new Vector3(0, intro_h, 0);
                 float background_h = (1 - lambda) * 0 + lambda * (-2*sy);
                 background.transform.position = new Vector3(0, background_h, 0);
@@ -318,9 +322,9 @@ public class question_handler : MonoBehaviour
             float lambda = (timer-b) / (float)(a - b);
             lambda = 1 - lambda;
 
-            float intro_h = (1 - lambda) * (2 * sy) + lambda * (0);
+            float intro_h = (1 - lambda) * (3 * sy) + lambda * (0);
             intro_object.transform.position = new Vector3(0, intro_h, 0);
-            float background_h = (1 - lambda) * 0 + lambda * (-sy);
+            float background_h = (1 - lambda) * 0 + lambda * (-2*sy);
             background.transform.position = new Vector3(0, background_h, 0);
             float foreground_h = (1 - lambda) * 0 + lambda * 2 * (-2*sy);
             foreground.transform.position = new Vector3(0, foreground_h, 0);
@@ -352,8 +356,10 @@ public class question_handler : MonoBehaviour
         bool answer = false;
         if (Input.GetKeyUp(KeyCode.LeftArrow))
             answer = (1 == good_answer);
+
         else if (Input.GetKeyUp(KeyCode.RightArrow))
             answer = (2 == good_answer);
+
 
         Destroy(q.gameObject);
         question_list.RemoveAt(question_list.Count - 1);
@@ -369,12 +375,29 @@ public class question_handler : MonoBehaviour
         return answer;
     }
 
+    void handleArrows() {
+        if (question_list.Count == 0)
+            return;
+
+        Debug.Log("1");
+        Question q = question_list[question_list.Count - 1];
+        
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            q.eclaircirGauche();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            q.eclaircirDroite();
+        }
+        
+    }
+
     public void Intro()
     {
         float sy = Screen.height / 100f;
         float background_h = (-2*sy);
         background.transform.position = new Vector3(0, background_h, 0);
-        float foreground_h =  2 * (-sy);
+        float foreground_h =  2 * (-2*sy);
         foreground.transform.position = new Vector3(0, foreground_h, 0);
 
         //init game state

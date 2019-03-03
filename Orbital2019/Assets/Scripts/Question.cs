@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Question : MonoBehaviour
-{
+public class Question : MonoBehaviour {
     //question text object
     [SerializeField]
     Text text;
@@ -16,8 +15,9 @@ public class Question : MonoBehaviour
     Text a2;
     //represent the right answer to the question : 1 means 1st answser is correct, 2 means 2nd answser is correct
     int good_answer = 0;
-    //variable assessing weither or not the user was right : -1 he is wrong, 0 no answer yet, 1 he is right
-    int answer = 0;
+
+    [SerializeField] Image flecheGauche;
+    [SerializeField] Image flecheDroite;
 
     // Start is called before the first frame update
     void Start()
@@ -38,5 +38,15 @@ public class Question : MonoBehaviour
         a1.text = a1_;
         a2.text = a2_;
         good_answer = good_answer_;
+    }
+
+    public void eclaircirGauche() {
+        flecheGauche.color = Color.white;
+    }
+
+
+    public void eclaircirDroite() {
+        flecheDroite.color = Color.white;
+        Debug.Log("DROITE");
     }
 }
