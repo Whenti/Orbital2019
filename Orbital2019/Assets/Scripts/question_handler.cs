@@ -39,6 +39,8 @@ public class question_handler : MonoBehaviour
     GameObject names;
     [SerializeField]
     GameObject intro_object;
+    [SerializeField]
+    Bourreau bourreau;
 
 
     [SerializeField]
@@ -122,6 +124,7 @@ public class question_handler : MonoBehaviour
     public void Lose()
     {
         Debug.Log("you have lost :(");
+        bourreau.setActive(true);
         timer = TIME_LOSE;
         game_state = State.Lose;
         for(int i=0;i<question_list.Count;++i)
@@ -318,6 +321,7 @@ public class question_handler : MonoBehaviour
             {
                 //reset all
                 lame.Init();
+                bourreau.setActive(false);
             }
             else if (timer == 0)
             {

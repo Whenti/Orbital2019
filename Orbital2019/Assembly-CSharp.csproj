@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\bourreau.cs" />
+    <Compile Include="Assets\Scripts\Bourreau.cs" />
     <Compile Include="Assets\Scripts\Lame.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\Scripts\question_handler.cs" />

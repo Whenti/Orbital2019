@@ -629,6 +629,7 @@ MonoBehaviour:
   title: {fileID: 1990197719}
   names: {fileID: 2127688752}
   intro_object: {fileID: 863072824}
+  bourreau: {fileID: 1550210451}
   lame: {fileID: 749344870}
   canvas: {fileID: 1429202432}
   TIME_QUESTIONS: 0
@@ -919,6 +920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd85f74fdec70945827c04578c96354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1: {fileID: 21300000, guid: a22f49bdd1bc007499608666a6087da8, type: 3}
+  sprite2: {fileID: 21300000, guid: da4515c70de330141aa4579a80e41007, type: 3}
+  sprite_clac: {fileID: 21300000, guid: 788b019bd50975249b4e9bf1e085f7da, type: 3}
 --- !u!1 &1699349527
 GameObject:
   m_ObjectHideFlags: 0
