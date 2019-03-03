@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Lame.cs" />
     <Compile Include="Assets\Scripts\Question.cs" />
     <Compile Include="Assets\Scripts\question_handler.cs" />
+    <Compile Include="Assets\Scripts\Sang.cs" />
     <Compile Include="Assets\Scripts\TeteGalilee.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
